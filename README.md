@@ -1,4 +1,4 @@
-** All source code was written by user Cambobug on GitHub (https://github.com/Cambobug), although it is free to use, sourcing where the source code was found would be appreciated **
+** All source code was written by user Cambobug on GitHub (https://github.com/Cambobug), although it is free to use, sourcing me would be appreciated **
 
 ** Project is currently being tested for bugs and memory errors so it may be unstable right now ** 
 
@@ -11,7 +11,7 @@ Welcome to Cambobug's C linked list API. This API is intended to be used when im
 
 TO-DO
 
-    1. Search web for more useful linked list ideas
+    1. Search for more useful linked list ideas
         a. Sort the list via a function pointer that returns what to sort by from .data
 
     2. Write tests for each function (empty lists, null lists, populated lists, NULL data)

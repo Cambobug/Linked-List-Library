@@ -18,7 +18,7 @@ TO-DO
         a. pushBack X
         b. pushFront X
         c. pop X
-        d. toss
+        d. toss X
         e. deleteAtIndx
         f. freeList
         g. clone

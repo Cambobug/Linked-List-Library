@@ -7,7 +7,7 @@
  */
 List * initializeList(size_t dataSize)
 {
-    if(dataSize == NULL)
+    if(dataSize == 0)
     {
         printf("initializeList ERROR: dataSize is NULL\n");
         return NULL;
@@ -97,7 +97,7 @@ void pushFront(List * list, void * data)
  * @param list 
  * @return Node* 
  */
-Node * pop(List * list)
+void * pop(List * list)
 {
     if(list == NULL)
     {
@@ -125,7 +125,11 @@ Node * pop(List * list)
     temp->next = NULL;
     temp->prev = NULL;
 
-    return temp;
+    void * tempData = temp->data;
+
+    free(temp);
+
+    return tempData;
 }
 
 /**
@@ -138,13 +142,13 @@ void toss(List * list, void (*deleteData)(void* data))
 {
     if(list == NULL || (*deleteData) == NULL)
     {
-        printf("toss ERROR: list or deleteData function poiter is NULL");
+        printf("toss ERROR: list or deleteData function poiter is NULL\n");
         return;
     }
 
     if(isEmpty(list)) //if the list is empty, return NULL
     {
-        printf("toss WARNING: list is empty");
+        printf("toss WARNING: list is empty\n");
         return;
     }
 
@@ -175,15 +179,15 @@ void toss(List * list, void (*deleteData)(void* data))
  */
 void deleteAtIndx(List * list, int index, void (*deleteData)(void *data))
 {
-    if(list == NULL || (*deleteData) == NULL || index < list->length - 1)
+    if(list == NULL || (*deleteData) == NULL || index > list->length - 1)
     {
-        printf("deleteAtIndx ERROR: list or deleteData function pointer is NULL");
+        printf("deleteAtIndx ERROR: list or deleteData function pointer is NULL\n");
         return;
     }
 
     if(isEmpty(list)) //if the list is empty, return NULL
     {
-        printf("deleteAtIndx WARNING: list is empty");
+        printf("deleteAtIndx WARNING: list is empty\n");
         return;
     }
     
@@ -196,7 +200,7 @@ void deleteAtIndx(List * list, int index, void (*deleteData)(void *data))
         {
             if(temp == NULL) // checks whether temp is NULL to prevent segmentation faults
             {
-                printf("deleteAtIndx ERROR: temp gone past end of list");
+                printf("deleteAtIndx ERROR: temp gone past end of list\n");
                 return;
             }
             temp = temp->next;
@@ -222,7 +226,7 @@ void freeList(List * list, void (*deleteData)(void * data))
 {
     if(list == NULL || (*deleteData == NULL))
     {
-        printf("freeList ERROR: list or deleteData function poiter is NULL");
+        printf("freeList ERROR: list or deleteData function poiter is NULL\n");
         return;
     }
 
@@ -251,7 +255,7 @@ List * clone(List * list)
 {
     if(list == NULL)
     {
-        printf("peekNode ERROR: list is NULL");
+        printf("peekNode ERROR: list is NULL\n");
         return NULL;
     }
 
@@ -288,7 +292,7 @@ Node * peekNode(List * list, int index)
 {
     if(list == NULL || index > list->length -1)
     {
-        printf("peekNode ERROR: list is NULL");
+        printf("peekNode ERROR: list is NULL\n");
         return NULL;
     }
 
@@ -300,7 +304,7 @@ Node * peekNode(List * list, int index)
         {
             if(temp == NULL) // checks whether temp is NULL to prevent segmentation faults
             {
-                printf("peekNode ERROR: temp gone past end of list");
+                printf("peekNode ERROR: temp gone past end of list\n");
                 return NULL;
             }
             temp = temp->next;
@@ -321,7 +325,7 @@ Node * pullNode(List * list, int index)
 {
     if(list == NULL || index > list->length -1)
     {
-        printf("peekNode ERROR: list is NULL");
+        printf("peekNode ERROR: list is NULL\n");
         return NULL;
     }
 
@@ -334,7 +338,7 @@ Node * pullNode(List * list, int index)
         {
             if(temp == NULL) // checks whether temp is NULL to prevent segmentation faults
             {
-                printf("peekNode ERROR: temp gone past end of list");
+                printf("peekNode ERROR: temp gone past end of list\n");
                 return NULL;
             }
             prev = temp;
@@ -360,13 +364,13 @@ Node * peekFront(List * list)
 {
     if(list == NULL) // checks if the list is NULL
     {
-        printf("peekFront ERROR: list is NULL");
+        printf("peekFront ERROR: list is NULL\n");
         return NULL;
     }
 
     if(isEmpty(list)) // checks if the list is empty
     {
-        printf("peekFront WARNING: list is empty");
+        printf("peekFront WARNING: list is empty\n");
         return NULL;
     }
 
@@ -383,13 +387,13 @@ Node * peekBack(List * list)
 {
     if(list == NULL) // checks if the list is NULL
     {
-        printf("peekFront ERROR: list is NULL"); 
+        printf("peekFront ERROR: list is NULL\n"); 
         return NULL;
     }
 
     if(list->head == NULL || list->tail == NULL) // checks if the list is empty or if the tail is NULL
     {
-        printf("peekFront WARNING: list is empty");
+        printf("peekFront WARNING: list is empty\n");
         return NULL;
     }
 
@@ -405,7 +409,7 @@ void headToTail(List * list) // checks if the list is NULL
 {
     if(list == NULL)
     {
-        printf("headToTail ERROR: list is NULL");
+        printf("headToTail ERROR: list is NULL\n");
         return;
     }
 

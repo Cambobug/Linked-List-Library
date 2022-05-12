@@ -20,7 +20,7 @@ typedef struct List{
 List * initializeList();
 void pushBack(List * list, void * data);
 void pushFront(List * list, void * data);
-Node * pop(List * list);
+void * pop(List * list);
 void toss(List * list, void (*deleteData)(void* data));
 void deleteAtIndx(List * list, int index, void (*deleteData)(void *data));
 void freeList(List * list, void (*deleteData)(void* data));

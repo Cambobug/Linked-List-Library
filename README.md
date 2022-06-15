@@ -15,14 +15,4 @@ TO-DO
         a. Sort the list via a function pointer that returns what to sort by from .data
 
     2. Write tests for each function (empty lists, null lists, populated lists, NULL data)
-        a. pushBack X
-        b. pushFront X
-        c. pop X
-        d. toss X
-        e. deleteAtIndx
-        f. freeList
-        g. clone
-        h. peekNode
-        i. pullNode
-        j. peekFront
-        k. peekBack
+        a. clone (needs individual data copy function pointer)

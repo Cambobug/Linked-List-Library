@@ -203,6 +203,7 @@ void deleteAtIndx(List * list, int index, void (*deleteData)(void *data))
                 printf("deleteAtIndx ERROR: temp gone past end of list\n");
                 return;
             }
+            prev = temp;
             temp = temp->next;
         }
         prev->next = temp->next; // makes the previous node point to the node after temp
@@ -211,6 +212,8 @@ void deleteAtIndx(List * list, int index, void (*deleteData)(void *data))
 
     temp->next = NULL;
     temp->prev = NULL;
+
+    list->length--;
 
     (*deleteData)(temp->data); // uses function pointer to delete the data inside temp
     free(temp); // frees the node pointed to by temp
@@ -224,7 +227,7 @@ void deleteAtIndx(List * list, int index, void (*deleteData)(void *data))
  */
 void freeList(List * list, void (*deleteData)(void * data)) 
 {
-    if(list == NULL || (*deleteData == NULL))
+    if(list == NULL || (*deleteData == NULL)) 
     {
         printf("freeList ERROR: list or deleteData function poiter is NULL\n");
         return;
@@ -255,7 +258,7 @@ List * clone(List * list)
 {
     if(list == NULL)
     {
-        printf("peekNode ERROR: list is NULL\n");
+        printf("clone ERROR: list is NULL\n");
         return NULL;
     }
 
@@ -278,7 +281,6 @@ List * clone(List * list)
         free(dataCopy);
         temp = temp->next;
     }
-
 }
 
 /**
@@ -330,7 +332,7 @@ Node * pullNode(List * list, int index)
     }
 
     Node * temp = list->head;
-    Node * prev;
+    Node * prev = NULL;
 
     if(list->head != NULL && list->tail != NULL)
     {
@@ -347,6 +349,8 @@ Node * pullNode(List * list, int index)
         prev->next = temp->next; // makes the previous node point to the node after temp
         temp->next->prev = prev; // makes the node after temp point to the node before temp
     }
+
+    list->length--;
 
     temp->next = NULL;
     temp->prev = NULL;
